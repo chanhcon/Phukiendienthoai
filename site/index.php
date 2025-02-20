@@ -792,7 +792,8 @@ if (isset($_GET['act'])) {
                 $diachi = $_POST['diachi'];
                 $sodienthoai = $_POST['sodienthoai'];
                 $congty = $_POST['companyname'];
-                $target_file = basename($_FILES["hinh_anh"]["name"]);
+                $file = basename($_FILES["hinh_anh"]["name"]);
+                $target_file="../assets/images";
                 // echo $target_file;
                 move_uploaded_file($_FILES["hinh_anh"]["tmp_name"], $target_file);
 
@@ -851,7 +852,7 @@ if (isset($_GET['act'])) {
                 if (!$error) {
 
                     // echo 'Success!';
-                    $is_updated = user_update_info($_POST['iduser'], $ho_ten, $diachi, $sodienthoai, $kichhoat = 1, $target_file, $congty);
+                    $is_updated = user_update_info($_POST['iduser'], $ho_ten, $diachi, $sodienthoai, $target_file, $congty, $kichhoat = 1);
 
                     if ($is_updated) {
 
