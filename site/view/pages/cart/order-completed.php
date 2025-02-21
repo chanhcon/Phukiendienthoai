@@ -378,10 +378,10 @@ if (isset($iddh)) {
                                                 <h6 class="widget-title border-left mb-20">Đơn hàng của bạn</h6>
                                                 <table>
                                                     <?php
-foreach ($order_list as $order_detail) {
-    # code...
-    $price_item = $order_detail['dongia'] * $order_detail['soluong'];
-    echo '
+                                                    foreach ($order_list as $order_detail) {
+                                                        # code...
+                                                        $price_item = $order_detail['dongia'] * $order_detail['soluong'];
+                                                        echo '
                                                             <tr>
                                                                 <td class="td-title-1">
                                                                     ' . $order_detail['tensp'] . 'x ' . $order_detail['soluong'] . '
@@ -391,16 +391,15 @@ foreach ($order_list as $order_detail) {
                                                                 </td>
                                                             </tr>
                                                             ';
-
-}
-?>
+                                                    }
+                                                    ?>
                                                     <tr>
                                                         <td class="td-title-1">
                                                             <?php echo $order_detail['tensp'] . "x" . $order_detail['soluong'] ?>
                                                         </td>
                                                         <td class="td-title-2">
                                                             <?php $price_item = $order_detail['dongia'] * $order_detail['soluong'];
-echo number_format($price_item);?>
+                                                            echo number_format($price_item); ?>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -512,8 +511,8 @@ echo number_format($price_item);?>
                                         <li>
                                             <h6>Đơn hàng số</h6>
                                             <p> #<?php if (isset($iddh)) {
-    echo $iddh;
-}?></p>
+                                                        echo $iddh;
+                                                    } ?></p>
                                         </li>
                                         <li>
                                             <h6>Mã đơn hàng</h6>
@@ -536,12 +535,12 @@ echo number_format($price_item);?>
                                             <h6 class="widget-title border-left mb-20">our order</h6>
                                             <table>
                                                 <?php
-// $subtotal = 0;
-foreach ($order_list as $order_detail) {
-    # code...
-    $price_item = $order_detail['dongia'] * $order_detail['soluong'];
+                                                // $subtotal = 0;
+                                                foreach ($order_list as $order_detail) {
+                                                    # code...
+                                                    $price_item = $order_detail['dongia'] * $order_detail['soluong'];
 
-    echo '
+                                                    echo '
                                                             <tr>
                                                                 <td class="td-title-1">
                                                                     ' . $order_detail['tensp'] . 'x ' . $order_detail['soluong'] . '
@@ -551,9 +550,8 @@ foreach ($order_list as $order_detail) {
                                                                 </td>
                                                             </tr>
                                                             ';
-
-}
-?>
+                                                }
+                                                ?>
                                                 <!-- <tr>
                                                     <td class="td-title-1">Dummy Product Name x 2</td>
                                                     <td class="td-title-2">$1855.00</td>
@@ -565,18 +563,18 @@ foreach ($order_list as $order_detail) {
                                                 <tr>
                                                     <td class="td-title-1">Tổng phụ</td>
                                                     <td class="td-title-2">
-                                                        <?php echo number_format($order['tongdonhang'] - $order['shipping_fee'] - $order['vat_fee']) ?>
+                                                        <?php echo number_format((float)$order['tongdonhang'] - (float)$order['shipping_fee'] - (float)$order['vat_fee']) ?>
                                                         VND</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="td-title-1">Chi phí vận chuyển</td>
                                                     <td class="td-title-2">
-                                                        <?php echo number_format($order['shipping_fee']) ?> VND</td>
+                                                        <?php echo number_format((float)$order['shipping_fee']) ?> VND</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="td-title-1">Vat (10%)</td>
                                                     <td class="td-title-2">
-                                                        <?php echo number_format($order['vat_fee']) ?> VND</td>
+                                                        <?php echo number_format((float)$order['vat_fee']) ?> VND</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="order-total">Tổng đơn hàng</td>

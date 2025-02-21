@@ -5,11 +5,11 @@
             <div class="active-slider-1 slick-arrow-1 slick-dots-1">
                 <!-- layer-1 Start -->
                 <?php
-$lis_slider_new = get_new_slider_home();
-foreach ($lis_slider_new as $slider) {
-    extract($slider);
-    $hinh = "../uploads/" . $img_slider;
-    echo '<div class="col-lg-12">
+                $lis_slider_new = get_new_slider_home();
+                foreach ($lis_slider_new as $slider) {
+                    extract($slider);
+                    $hinh = "../uploads/" . $img_slider;
+                    echo '<div class="col-lg-12">
                     <div class="layer-1">
                         <div class="slider-img">
                             <img src="' . $hinh . '" alt="promotion-dummpy-image.png">
@@ -28,8 +28,8 @@ foreach ($lis_slider_new as $slider) {
                         </div>
                     </div>
                 </div>';
-}
-?>
+                }
+                ?>
 
             </div>
         </div>
@@ -54,16 +54,16 @@ foreach ($lis_slider_new as $slider) {
                         <div class="active-by-brand slick-arrow-2">
                             <!-- Loop Brand Item here -->
                             <?php
-$cate_list = cate_select_all();
-// var_dump($cate_list);
+                            $cate_list = cate_select_all();
+                            // var_dump($cate_list);
 
-$cate_list = array_filter($cate_list, function ($cate_item) {
-    return $cate_item['ma_danhmuc'] != 0;
-});
+                            $cate_list = array_filter($cate_list, function ($cate_item) {
+                                return $cate_item['ma_danhmuc'] != 0;
+                            });
 
-foreach ($cate_list as $cate_item) {
-    # code...
-    echo '
+                            foreach ($cate_list as $cate_item) {
+                                # code...
+                                echo '
         <!-- single-brand-product start -->
             <div class="brand-item shadow border border-top-1">
                 <div class="single-brand-product">
@@ -76,9 +76,9 @@ foreach ($cate_list as $cate_item) {
             </div>
         <!-- single-brand-product end -->
         ';
-}
+                            }
 
-?>
+                            ?>
 
                         </div>
                     </div>
@@ -101,35 +101,34 @@ foreach ($cate_list as $cate_item) {
                         <div class="active-featured-product slick-arrow-2">
                             <!-- Load Featured products from database -->
                             <?php
-$featured_products = product_select_all();
-// var_dump($featured_products);
-foreach ($featured_products as $item) {
+                            $featured_products = product_select_all();
+                            // var_dump($featured_products);
+                            foreach ($featured_products as $item) {
 
-    #Thumbnail Image
-    $image_list = explode(',', $item['images']);
-    // var_dump(catename_select_by_id($item['ma_danhmuc']));
-    $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
-    $price_format = number_format($item['don_gia'] * (1 - $item['giam_gia'] / 100));
-    $addcartfunc = "handleAddCart('addtocart', 'addcart')";
-    $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
-    // $avg_stars = avg_star_reviews_of_product($item['masanpham']);
-    // $result_stars = renderStarRatings(round($avg_stars, 0));
-    $avg_stars = avg_star_reviews_of_product($item['masanpham']);
-    $avg_stars = $avg_stars !== null ? $avg_stars : 0; // Default to 0 if null
-    $result_stars = renderStarRatings(round($avg_stars, 0));
-    foreach ($image_list as $image_item) {
+                                #Thumbnail Image
+                                $image_list = explode(',', $item['images']);
+                                // var_dump(catename_select_by_id($item['ma_danhmuc']));
+                                $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
+                                $price_format = number_format($item['don_gia'] * (1 - $item['giam_gia'] / 100));
+                                $addcartfunc = "handleAddCart('addtocart', 'addcart')";
+                                $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
+                                // $avg_stars = avg_star_reviews_of_product($item['masanpham']);
+                                // $result_stars = renderStarRatings(round($avg_stars, 0));
+                                $avg_stars = avg_star_reviews_of_product($item['masanpham']);
+                                $avg_stars = $avg_stars !== null ? $avg_stars : 0; // Default to 0 if null
+                                $result_stars = renderStarRatings(round($avg_stars, 0));
+                                foreach ($image_list as $image_item) {
 
-        if (substr($image_item, 0, 6) == "thumb-") {
-            // echo $image_item;
-            $thumbnail = "../uploads/" . $image_item;
-            break;
-        }
+                                    if (substr($image_item, 0, 6) == "thumb-") {
+                                        // echo $image_item;
+                                        $thumbnail = "../uploads/" . $image_item;
+                                        break;
+                                    }
+                                }
+                                // echo $item['masanpham'];
 
-    }
-    // echo $item['masanpham'];
-
-    # code...
-    echo '
+                                # code...
+                                echo '
                         <form action="./index.php?act=addtocart" method="post">
                                 <div class="product-item position-relative">
                                 <span class="ms-2 badge bg-secondary">' . $item['giam_gia'] . '%</span>
@@ -178,8 +177,8 @@ foreach ($featured_products as $item) {
                                     </div>
                                 </form>
                                 ';
-}
-?>
+                            }
+                            ?>
 
                         </div>
                     </div>
@@ -195,34 +194,33 @@ foreach ($featured_products as $item) {
             <div class="row">
                 <!-- up-comming-pro -->
                 <?php
-$get_new_banner_home = get_new_banner_home();
-foreach ($get_new_banner_home as $banner) {
-    extract($banner);
-    // var_dump($banner);
-    $image_list = explode(',', $banner['images']);
-    foreach ($image_list as $image_item) {
+                $get_new_banner_home = get_new_banner_home();
+                foreach ($get_new_banner_home as $banner) {
+                    extract($banner);
+                    // var_dump($banner);
+                    $image_list = explode(',', $banner['images']);
+                    foreach ($image_list as $image_item) {
 
-        if (substr($image_item, 0, 6) == "thumb-") {
-            // echo $image_item;
-            $thumbnail = "../uploads/" . $image_item;
-            $alt = $image_item;
-            break;
-        }
-
-    }
-}
-?>
+                        if (substr($image_item, 0, 6) == "thumb-") {
+                            // echo $image_item;
+                            $thumbnail = "../uploads/" . $image_item;
+                            $alt = $image_item;
+                            break;
+                        }
+                    }
+                }
+                ?>
                 <div class="col-lg-8">
-                    <div class="up-comming-pro gray-bg clearfix banner-element" banner-id="<?=$banner['id']?>">
+                    <div class="up-comming-pro gray-bg clearfix banner-element" banner-id="<?= $banner['id'] ?>">
                         <div class="up-comming-pro-img f-left">
-                            <a href="index.php?act=detailproduct&id=<?=$banner['idsp']?>">
-                                <img src="<?=$thumbnail?>" alt="<?=$alt?>">
+                            <a href="index.php?act=detailproduct&id=<?= $banner['idsp'] ?>">
+                                <img src="<?= $thumbnail ?>" alt="<?= $alt ?>">
                             </a>
                         </div>
                         <div class="up-comming-pro-info f-left">
-                            <h3><a href="index.php?act=detailproduct&id=<?=$banner['idsp']?>"><?=$banner['name']?></a>
+                            <h3><a href="index.php?act=detailproduct&id=<?= $banner['idsp'] ?>"><?= $banner['name'] ?></a>
                             </h3>
-                            <p><?=$banner['noi_dung']?> </p>
+                            <p><?= $banner['noi_dung'] ?> </p>
                             <div class="up-comming-time">
                                 <div data-countdown="2023/05/05"></div>
                             </div>
@@ -232,12 +230,12 @@ foreach ($get_new_banner_home as $banner) {
                 <div class="col-lg-4 d-block d-md-none d-lg-block">
                     <div class="banner-item banner-1">
                         <div class="banner-img">
-                            <a href="#"><img src="../uploads/<?=$image_list[0]?>" alt="I phone Promotion 2.png"></a>
+                            <a href="#"><img src="../uploads/<?= $image_list[0] ?>" alt="I phone Promotion 2.png"></a>
                         </div>
                         <div class="banner-info">
-                            <h3><a href="index.php?act=detailproduct&id=<?=$banner['idsp']?>">I phone 14 Pro Max</a>
+                            <h3><a href="index.php?act=detailproduct&id=<?= $banner['idsp'] ?>">I phone 14 Pro Max</a>
                             </h3>
-                            <span><?=$banner['info']?></span>
+                            <span><?= $banner['info'] ?></span>
                         </div>
                     </div>
                 </div>
@@ -279,49 +277,48 @@ foreach ($get_new_banner_home as $banner) {
                         <div id="popular-product" class="tab-pane active show">
                             <div class="row">
                                 <?php
-// PHẦN XỬ LÝ PHP
-// B1: KET NOI CSDL
-$conn = connectdb();
+                                // PHẦN XỬ LÝ PHP
+                                // B1: KET NOI CSDL
+                                $conn = connectdb();
 
-$sql = "SELECT * FROM tbl_sanpham order by so_luot_xem desc"; // Total Product
-$_limit = 12;
-$pagination = createDataWithPagination($conn, $sql, $_limit);
-$product_list = $pagination['datalist'];
-// var_dump($productList);
-$total_page = $pagination['totalpage'];
-$start = $pagination['start'];
-$current_page = $pagination['current_page'];
-$total_records = $pagination['total_records'];
+                                $sql = "SELECT * FROM tbl_sanpham order by so_luot_xem desc"; // Total Product
+                                $_limit = 12;
+                                $pagination = createDataWithPagination($conn, $sql, $_limit);
+                                $product_list = $pagination['datalist'];
+                                // var_dump($productList);
+                                $total_page = $pagination['totalpage'];
+                                $start = $pagination['start'];
+                                $current_page = $pagination['current_page'];
+                                $total_records = $pagination['total_records'];
 
-// $product_list = product_select_12();
-// var_dump($product_list);
-foreach ($product_list as $item) {
+                                // $product_list = product_select_12();
+                                // var_dump($product_list);
+                                foreach ($product_list as $item) {
 
-    #Thumbnail Image
-    $image_list = explode(',', $item['images']);
+                                    #Thumbnail Image
+                                    $image_list = explode(',', $item['images']);
 
-    $price_format = number_format($item['don_gia'] * (1 - $item['giam_gia'] / 100));
-    $addcartfunc = "handleAddCart('addtocart', 'addcart')";
-    $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
-    $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
+                                    $price_format = number_format($item['don_gia'] * (1 - $item['giam_gia'] / 100));
+                                    $addcartfunc = "handleAddCart('addtocart', 'addcart')";
+                                    $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
+                                    $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
 
-    // $avg_stars = avg_star_reviews_of_product($item['masanpham']);
-    // $result_stars = renderStarRatings(round($avg_stars, 0));
-     $avg_stars = avg_star_reviews_of_product($item['masanpham']);
-    $avg_stars = $avg_stars !== null ? $avg_stars : 0; // Default to 0 if null
-    $result_stars = renderStarRatings(round($avg_stars, 0));
-    foreach ($image_list as $image_item) {
+                                    // $avg_stars = avg_star_reviews_of_product($item['masanpham']);
+                                    // $result_stars = renderStarRatings(round($avg_stars, 0));
+                                    $avg_stars = avg_star_reviews_of_product($item['masanpham']);
+                                    $avg_stars = $avg_stars !== null ? $avg_stars : 0; // Default to 0 if null
+                                    $result_stars = renderStarRatings(round($avg_stars, 0));
+                                    foreach ($image_list as $image_item) {
 
-        if (substr($image_item, 0, 6) == "thumb-") {
-            // echo $image_item;
-            $thumbnail = "../uploads/" . $image_item;
-            break;
-        }
+                                        if (substr($image_item, 0, 6) == "thumb-") {
+                                            // echo $image_item;
+                                            $thumbnail = "../uploads/" . $image_item;
+                                            break;
+                                        }
+                                    }
 
-    }
-
-    # code...
-    echo '
+                                    # code...
+                                    echo '
                                         <div class="col-lg-3 col-md-4">
                                         <form action="./index.php?act=addtocart" method="post">
                                                 <div class="product-item position-relative">
@@ -372,35 +369,35 @@ foreach ($product_list as $item) {
                                             </form>
                                         </div>
                                         ';
-}
-?>
+                                }
+                                ?>
                                 <!-- shop-pagination start -->
                                 <ul class="shop-pagination box-shadow text-center ptblr-10-30">
 
                                     <?php
-// HIỂN THỊ PHÂN TRANG
-// nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
-if ($current_page > 1 && $total_page > 1) {
-    echo '<a class="page-item btn btn-secondary" href="index.php?view=popular-product&page=' . ($current_page - 1) . '">Trước</a> | ';
-}
+                                    // HIỂN THỊ PHÂN TRANG
+                                    // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+                                    if ($current_page > 1 && $total_page > 1) {
+                                        echo '<a class="page-item btn btn-secondary" href="index.php?view=popular-product&page=' . ($current_page - 1) . '">Trước</a> | ';
+                                    }
 
-// Lặp khoảng giữa
-for ($i = 1; $i <= $total_page; $i++) {
-    // Nếu là trang hiện tại thì hiển thị thẻ span
-    // ngược lại hiển thị thẻ a
-    if ($i == $current_page) {
-        echo '<span class="page-item btn btn-primary main-bg-color main-border-color">' . $i . '</span> | ';
-    } else {
-        echo '<a onclick="setPagination()" class="page-item btn btn-light" href="index.php?view=popular-product&page=' . $i . '">' . $i . '</a> | ';
-    }
-}
+                                    // Lặp khoảng giữa
+                                    for ($i = 1; $i <= $total_page; $i++) {
+                                        // Nếu là trang hiện tại thì hiển thị thẻ span
+                                        // ngược lại hiển thị thẻ a
+                                        if ($i == $current_page) {
+                                            echo '<span class="page-item btn btn-primary main-bg-color main-border-color">' . $i . '</span> | ';
+                                        } else {
+                                            echo '<a onclick="setPagination()" class="page-item btn btn-light" href="index.php?view=popular-product&page=' . $i . '">' . $i . '</a> | ';
+                                        }
+                                    }
 
-// nếu current_page < $total_page và total_page > 1 mới hiển thị nút Next
-if ($current_page < $total_page && $total_page > 1) {
-    echo '<a class="page-item btn btn-secondary" href="index.php?view=popular-product&page=' . ($current_page + 1) . '">Sau</a> | ';
-}
+                                    // nếu current_page < $total_page và total_page > 1 mới hiển thị nút Next
+                                    if ($current_page < $total_page && $total_page > 1) {
+                                        echo '<a class="page-item btn btn-secondary" href="index.php?view=popular-product&page=' . ($current_page + 1) . '">Sau</a> | ';
+                                    }
 
-?>
+                                    ?>
                                     <!-- <li><a href="#"><i class="zmdi zmdi-chevron-left"></i></a></li>
                                     <li><a href="#">01</a></li>
                                     <li><a href="#">02</a></li>
@@ -418,45 +415,44 @@ if ($current_page < $total_page && $total_page > 1) {
                             <div class="row">
                                 <?php
 
-// PHẦN XỬ LÝ PHP
-// B1: KET NOI CSDL
-$conn = connectdb();
+                                // PHẦN XỬ LÝ PHP
+                                // B1: KET NOI CSDL
+                                $conn = connectdb();
 
-$sql = "SELECT * FROM tbl_sanpham order by ngay_nhap desc"; // Total Product
-$_limit = 12;
-$pagination = createDataWithPagination($conn, $sql, $_limit);
-$product_list = $pagination['datalist'];
-// var_dump($productList);
+                                $sql = "SELECT * FROM tbl_sanpham order by ngay_nhap desc"; // Total Product
+                                $_limit = 12;
+                                $pagination = createDataWithPagination($conn, $sql, $_limit);
+                                $product_list = $pagination['datalist'];
+                                // var_dump($productList);
 
-$total_page = $pagination['totalpage'];
-$start = $pagination['start'];
-$current_page = $pagination['current_page'];
-$total_records = $pagination['total_records'];
+                                $total_page = $pagination['totalpage'];
+                                $start = $pagination['start'];
+                                $current_page = $pagination['current_page'];
+                                $total_records = $pagination['total_records'];
 
-// $product_list = product_select_all_lastest();
-// var_dump($product_list);
-foreach ($product_list as $item) {
+                                // $product_list = product_select_all_lastest();
+                                // var_dump($product_list);
+                                foreach ($product_list as $item) {
 
-    #Thumbnail Image
-    $image_list = explode(',', $item['images']);
-    $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
-    $price_format = number_format($item['don_gia'] * (1 - $item['giam_gia'] / 100));
-    $addcartfunc = "handleAddCart('addtocart', 'addcart')";
-    $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
-    $avg_stars = avg_star_reviews_of_product($item['masanpham']);
-    $result_stars = renderStarRatings(round($avg_stars, 0));
-    foreach ($image_list as $image_item) {
+                                    #Thumbnail Image
+                                    $image_list = explode(',', $item['images']);
+                                    $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
+                                    $price_format = number_format($item['don_gia'] * (1 - $item['giam_gia'] / 100));
+                                    $addcartfunc = "handleAddCart('addtocart', 'addcart')";
+                                    $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
+                                    $avg_stars = avg_star_reviews_of_product($item['masanpham']);
+                                    $result_stars = renderStarRatings(round($avg_stars ?? 0, 0));
+                                    foreach ($image_list as $image_item) {
 
-        if (substr($image_item, 0, 6) == "thumb-") {
-            // echo $image_item;
-            $thumbnail = "../uploads/" . $image_item;
-            break;
-        }
+                                        if (substr($image_item, 0, 6) == "thumb-") {
+                                            // echo $image_item;
+                                            $thumbnail = "../uploads/" . $image_item;
+                                            break;
+                                        }
+                                    }
 
-    }
-
-    # code...
-    echo '
+                                    # code...
+                                    echo '
                                         <div class="col-lg-3 col-md-4">
                                         <form action="./index.php?act=addtocart" method="post">
                                                 <div class="product-item position-relative">
@@ -507,8 +503,8 @@ foreach ($product_list as $item) {
                                             </form>
                                         </div>
                                         ';
-}
-?>
+                                }
+                                ?>
                                 <!-- product-item end -->
                                 <!-- shop-pagination start -->
                                 <ul class="shop-pagination box-shadow text-center ptblr-10-30">
@@ -520,29 +516,29 @@ foreach ($product_list as $item) {
                                     <li><a href="#">05</a></li>
                                     <li class="active"><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li> -->
                                     <?php
-// HIỂN THỊ PHÂN TRANG
-// nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
-if ($current_page > 1 && $total_page > 1) {
-    echo '<a class="page-item btn btn-secondary" href="index.php?view=new-arrival&page=' . ($current_page - 1) . '">Trước</a> | ';
-}
+                                    // HIỂN THỊ PHÂN TRANG
+                                    // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+                                    if ($current_page > 1 && $total_page > 1) {
+                                        echo '<a class="page-item btn btn-secondary" href="index.php?view=new-arrival&page=' . ($current_page - 1) . '">Trước</a> | ';
+                                    }
 
-// Lặp khoảng giữa
-for ($i = 1; $i <= $total_page; $i++) {
-    // Nếu là trang hiện tại thì hiển thị thẻ span
-    // ngược lại hiển thị thẻ a
-    if ($i == $current_page) {
-        echo '<span class="page-item btn btn-primary main-bg-color main-border-color">' . $i . '</span> | ';
-    } else {
-        echo '<a onclick="setPagination()" class="page-item btn btn-light" href="index.php?view=new-arrival&page=' . $i . '">' . $i . '</a> | ';
-    }
-}
+                                    // Lặp khoảng giữa
+                                    for ($i = 1; $i <= $total_page; $i++) {
+                                        // Nếu là trang hiện tại thì hiển thị thẻ span
+                                        // ngược lại hiển thị thẻ a
+                                        if ($i == $current_page) {
+                                            echo '<span class="page-item btn btn-primary main-bg-color main-border-color">' . $i . '</span> | ';
+                                        } else {
+                                            echo '<a onclick="setPagination()" class="page-item btn btn-light" href="index.php?view=new-arrival&page=' . $i . '">' . $i . '</a> | ';
+                                        }
+                                    }
 
-// nếu current_page < $total_page và total_page > 1 mới hiển thị nút Next
-if ($current_page < $total_page && $total_page > 1) {
-    echo '<a class="page-item btn btn-secondary" href="index.php?view=new-arrival&page=' . ($current_page + 1) . '">Sau</a> | ';
-}
+                                    // nếu current_page < $total_page và total_page > 1 mới hiển thị nút Next
+                                    if ($current_page < $total_page && $total_page > 1) {
+                                        echo '<a class="page-item btn btn-secondary" href="index.php?view=new-arrival&page=' . ($current_page + 1) . '">Sau</a> | ';
+                                    }
 
-?>
+                                    ?>
                                 </ul>
                                 <!-- shop-pagination end -->
                             </div>
@@ -552,47 +548,47 @@ if ($current_page < $total_page && $total_page > 1) {
                         <div id="best-seller" class="tab-pane" role="tabpanel">
                             <div class="row">
                                 <?php
-// PHẦN XỬ LÝ PHP
-// B1: KET NOI CSDL
-$conn = connectdb();
+                                // PHẦN XỬ LÝ PHP
+                                // B1: KET NOI CSDL
+                                $conn = connectdb();
 
-$sql = "SELECT masanpham, sp.don_gia as don_gia, ton_kho, giam_gia, sp.tensp as tensp, hinhanh as thumbnail, sum(soluong) as sl_ban, mo_ta, sp.ma_danhmuc as ma_danhmuc from tbl_order od inner join tbl_order_detail detail on od.id = detail.iddonhang inner join tbl_sanpham sp on sp.masanpham = detail.idsanpham where trangthai = 4 group by idsanpham order by sl_ban desc"; // Total Product
-$_limit = 12;
-$pagination = createDataWithPagination($conn, $sql, $_limit);
-$product_list = $pagination['datalist'];
-// var_dump($productList);
-$total_page = $pagination['totalpage'];
-$start = $pagination['start'];
-$current_page = $pagination['current_page'];
-$total_records = $pagination['total_records'];
+                                $sql = "SELECT masanpham, sp.don_gia as don_gia, ton_kho, giam_gia, sp.tensp as tensp, hinhanh as thumbnail, sum(soluong) as sl_ban, mo_ta, sp.ma_danhmuc as ma_danhmuc from tbl_order od inner join tbl_order_detail detail on od.id = detail.iddonhang inner join tbl_sanpham sp on sp.masanpham = detail.idsanpham where trangthai = 4 group by idsanpham order by sl_ban desc"; // Total Product
+                                $_limit = 12;
+                                $pagination = createDataWithPagination($conn, $sql, $_limit);
+                                $product_list = $pagination['datalist'];
+                                // var_dump($productList);
+                                $total_page = $pagination['totalpage'];
+                                $start = $pagination['start'];
+                                $current_page = $pagination['current_page'];
+                                $total_records = $pagination['total_records'];
 
-$top_sold_products = $product_list;
-// var_dump($top_sold_products);
-foreach ($top_sold_products as $item) {
+                                $top_sold_products = $product_list;
+                                // var_dump($top_sold_products);
+                                foreach ($top_sold_products as $item) {
 
-    #Thumbnail Image
-    // $image_list = explode(',', $item['images']);
+                                    #Thumbnail Image
+                                    // $image_list = explode(',', $item['images']);
 
-    $price_format = number_format($item['don_gia'] * (1 - $item['giam_gia'] / 100));
-    $addcartfunc = "handleAddCart('addtocart', 'addcart')";
-    $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
-    $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
-    $avg_stars = avg_star_reviews_of_product($item['masanpham']);
-    $result_stars = renderStarRatings(round($avg_stars, 0));
-    // foreach ($image_list as $image_item) {
+                                    $price_format = number_format($item['don_gia'] * (1 - $item['giam_gia'] / 100));
+                                    $addcartfunc = "handleAddCart('addtocart', 'addcart')";
+                                    $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
+                                    $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
+                                    $avg_stars = avg_star_reviews_of_product($item['masanpham']);
+                                    $result_stars = renderStarRatings(round($avg_stars, 0));
+                                    // foreach ($image_list as $image_item) {
 
-    //     if (substr($image_item, 0, 6) == "thumb-") {
-    //         // echo $image_item;
-    //         $thumbnail = "../uploads/" . $image_item;
-    //         break;
-    // }
+                                    //     if (substr($image_item, 0, 6) == "thumb-") {
+                                    //         // echo $image_item;
+                                    //         $thumbnail = "../uploads/" . $image_item;
+                                    //         break;
+                                    // }
 
-    $thumbnail = $item['thumbnail'];
+                                    $thumbnail = $item['thumbnail'];
 
-    // }
+                                    // }
 
-    # code...
-    echo '
+                                    # code...
+                                    echo '
                                                                         <div class="col-lg-3 col-md-4">
                                                                         <form action="./index.php?act=addtocart" method="post">
                                                                                 <div class="product-item position-relative">
@@ -643,8 +639,8 @@ foreach ($top_sold_products as $item) {
                                                                             </form>
                                                                         </div>
                                                                         ';
-}
-?>
+                                }
+                                ?>
 
                                 <!-- shop-pagination start -->
                                 <ul class="shop-pagination box-shadow text-center ptblr-10-30">
@@ -657,29 +653,29 @@ foreach ($top_sold_products as $item) {
                                     <li><a href="#">05</a></li>
                                     <li class="active"><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li> -->
                                     <?php
-// HIỂN THỊ PHÂN TRANG
-// nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
-if ($current_page > 1 && $total_page > 1) {
-    echo '<a class="page-item btn btn-secondary" href="index.php?page=' . ($current_page - 1) . '">Trước</a> | ';
-}
+                                    // HIỂN THỊ PHÂN TRANG
+                                    // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+                                    if ($current_page > 1 && $total_page > 1) {
+                                        echo '<a class="page-item btn btn-secondary" href="index.php?page=' . ($current_page - 1) . '">Trước</a> | ';
+                                    }
 
-// Lặp khoảng giữa
-for ($i = 1; $i <= $total_page; $i++) {
-    // Nếu là trang hiện tại thì hiển thị thẻ span
-    // ngược lại hiển thị thẻ a
-    if ($i == $current_page) {
-        echo '<span class="page-item btn btn-primary main-bg-color main-border-color">' . $i . '</span> | ';
-    } else {
-        echo '<a onclick="setPagination()" class="page-item btn btn-light" href="index.php?page=' . $i . '">' . $i . '</a> | ';
-    }
-}
+                                    // Lặp khoảng giữa
+                                    for ($i = 1; $i <= $total_page; $i++) {
+                                        // Nếu là trang hiện tại thì hiển thị thẻ span
+                                        // ngược lại hiển thị thẻ a
+                                        if ($i == $current_page) {
+                                            echo '<span class="page-item btn btn-primary main-bg-color main-border-color">' . $i . '</span> | ';
+                                        } else {
+                                            echo '<a onclick="setPagination()" class="page-item btn btn-light" href="index.php?page=' . $i . '">' . $i . '</a> | ';
+                                        }
+                                    }
 
-// nếu current_page < $total_page và total_page > 1 mới hiển thị nút Next
-if ($current_page < $total_page && $total_page > 1) {
-    echo '<a class="page-item btn btn-secondary" href="index.php?page=' . ($current_page + 1) . '">Sau</a> | ';
-}
+                                    // nếu current_page < $total_page và total_page > 1 mới hiển thị nút Next
+                                    if ($current_page < $total_page && $total_page > 1) {
+                                        echo '<a class="page-item btn btn-secondary" href="index.php?page=' . ($current_page + 1) . '">Sau</a> | ';
+                                    }
 
-?>
+                                    ?>
                                 </ul>
                                 <!-- shop-pagination end -->
                             </div>
@@ -690,44 +686,43 @@ if ($current_page < $total_page && $total_page > 1) {
                             <div class="row">
                                 <?php
 
-// PHẦN XỬ LÝ PHP
-// B1: KET NOI CSDL
-$conn = connectdb();
+                                // PHẦN XỬ LÝ PHP
+                                // B1: KET NOI CSDL
+                                $conn = connectdb();
 
-$sql = "SELECT * FROM tbl_sanpham WHERE giam_gia > 0 order by giam_gia desc"; // Total Product
-$_limit = 12;
-$pagination = createDataWithPagination($conn, $sql, $_limit);
-$product_list = $pagination['datalist'];
-// var_dump($productList);
-$total_page = $pagination['totalpage'];
-$start = $pagination['start'];
-$current_page = $pagination['current_page'];
-$total_records = $pagination['total_records'];
+                                $sql = "SELECT * FROM tbl_sanpham WHERE giam_gia > 0 order by giam_gia desc"; // Total Product
+                                $_limit = 12;
+                                $pagination = createDataWithPagination($conn, $sql, $_limit);
+                                $product_list = $pagination['datalist'];
+                                // var_dump($productList);
+                                $total_page = $pagination['totalpage'];
+                                $start = $pagination['start'];
+                                $current_page = $pagination['current_page'];
+                                $total_records = $pagination['total_records'];
 
-// $product_list = product_select_all_discounts();
-// var_dump($product_list);
-foreach ($product_list as $item) {
+                                // $product_list = product_select_all_discounts();
+                                // var_dump($product_list);
+                                foreach ($product_list as $item) {
 
-    #Thumbnail Image
-    $image_list = explode(',', $item['images']);
-    $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
-    $price_format = number_format($item['don_gia'] * (1 - $item['giam_gia'] / 100));
-    $addcartfunc = "handleAddCart('addtocart', 'addcart')";
-    $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
-    $avg_stars = avg_star_reviews_of_product($item['masanpham']);
-    $result_stars = renderStarRatings(round($avg_stars, 0));
-    foreach ($image_list as $image_item) {
+                                    #Thumbnail Image
+                                    $image_list = explode(',', $item['images']);
+                                    $cate_name = catename_select_by_id($item['ma_danhmuc'])['ten_danhmuc'];
+                                    $price_format = number_format($item['don_gia'] * (1 - $item['giam_gia'] / 100));
+                                    $addcartfunc = "handleAddCart('addtocart', 'addcart')";
+                                    $addwishlistfunc = "handleAddCart('addtowishlist', 'addwishlist')";
+                                    $avg_stars = avg_star_reviews_of_product($item['masanpham']);
+                                    $result_stars = renderStarRatings(round($avg_stars, 0));
+                                    foreach ($image_list as $image_item) {
 
-        if (substr($image_item, 0, 6) == "thumb-") {
-            // echo $image_item;
-            $thumbnail = "../uploads/" . $image_item;
-            break;
-        }
+                                        if (substr($image_item, 0, 6) == "thumb-") {
+                                            // echo $image_item;
+                                            $thumbnail = "../uploads/" . $image_item;
+                                            break;
+                                        }
+                                    }
 
-    }
-
-    # code...
-    echo '
+                                    # code...
+                                    echo '
                                         <div class="col-lg-3 col-md-4">
                                         <form action="./index.php?act=addtocart" method="post">
                                                 <div class="product-item position-relative">
@@ -778,36 +773,36 @@ foreach ($product_list as $item) {
                                             </form>
                                         </div>
                                         ';
-}
-?>
+                                }
+                                ?>
 
                                 <!-- shop-pagination start -->
                                 <ul class="shop-pagination box-shadow text-center ptblr-10-30">
 
                                     <?php
-// HIỂN THỊ PHÂN TRANG
-// nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
-if ($current_page > 1 && $total_page > 1) {
-    echo '<a class="page-item btn btn-secondary" href="index.php?view=special-offer&page=' . ($current_page - 1) . '">Trước</a> | ';
-}
+                                    // HIỂN THỊ PHÂN TRANG
+                                    // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+                                    if ($current_page > 1 && $total_page > 1) {
+                                        echo '<a class="page-item btn btn-secondary" href="index.php?view=special-offer&page=' . ($current_page - 1) . '">Trước</a> | ';
+                                    }
 
-// Lặp khoảng giữa
-for ($i = 1; $i <= $total_page; $i++) {
-    // Nếu là trang hiện tại thì hiển thị thẻ span
-    // ngược lại hiển thị thẻ a
-    if ($i == $current_page) {
-        echo '<span class="page-item btn btn-primary main-bg-color main-border-color">' . $i . '</span> | ';
-    } else {
-        echo '<a class="page-item btn btn-light" href="index.php?view=special-offer&page=' . $i . '">' . $i . '</a> | ';
-    }
-}
+                                    // Lặp khoảng giữa
+                                    for ($i = 1; $i <= $total_page; $i++) {
+                                        // Nếu là trang hiện tại thì hiển thị thẻ span
+                                        // ngược lại hiển thị thẻ a
+                                        if ($i == $current_page) {
+                                            echo '<span class="page-item btn btn-primary main-bg-color main-border-color">' . $i . '</span> | ';
+                                        } else {
+                                            echo '<a class="page-item btn btn-light" href="index.php?view=special-offer&page=' . $i . '">' . $i . '</a> | ';
+                                        }
+                                    }
 
-// nếu current_page < $total_page và total_page > 1 mới hiển thị nút Next
-if ($current_page < $total_page && $total_page > 1) {
-    echo '<a class="page-item btn btn-secondary" href="index.php?view=special-offer&page=' . ($current_page + 1) . '">Sau</a> | ';
-}
+                                    // nếu current_page < $total_page và total_page > 1 mới hiển thị nút Next
+                                    if ($current_page < $total_page && $total_page > 1) {
+                                        echo '<a class="page-item btn btn-secondary" href="index.php?view=special-offer&page=' . ($current_page + 1) . '">Sau</a> | ';
+                                    }
 
-?>
+                                    ?>
 
                                     <!-- <li><a href="#"><i class="zmdi zmdi-chevron-left"></i></a></li>
                                     <li><a href="#">01</a></li>
@@ -840,20 +835,20 @@ if ($current_page < $total_page && $total_page > 1) {
                     <div class="blog">
                         <div class="active-blog slick-arrow-1">
                             <?php
-$list_newblog_home = get_all_new_blog_home();
-foreach ($list_newblog_home as $newblog) {
-    extract($newblog);
-    $image_list = explode(',', $newblog['images']);
-    foreach ($image_list as $image_item) {
+                            $list_newblog_home = get_all_new_blog_home();
+                            foreach ($list_newblog_home as $newblog) {
+                                extract($newblog);
+                                $image_list = explode(',', $newblog['images']);
+                                foreach ($image_list as $image_item) {
 
-        if (substr($image_item, 0, 6) == "thumb-") {
-            // echo $image_item;
-            $thumbnail = "../uploads/" . $image_item;
-            break;
-        }
-    }
-    $conten = mb_substr($newblog['noi_dung'], 0, 100);
-    echo '<div class="blog-item">
+                                    if (substr($image_item, 0, 6) == "thumb-") {
+                                        // echo $image_item;
+                                        $thumbnail = "../uploads/" . $image_item;
+                                        break;
+                                    }
+                                }
+                                $conten = mb_substr($newblog['noi_dung'], 0, 100);
+                                echo '<div class="blog-item">
                                     <img style="width: 365px; height: 265px;" src="' . $thumbnail . '" alt="lastest-blog-1.jpg">
                                     <div class="blog-desc">
                                         <h5 class="blog-title"><a href="./index.php?act=blogdetail&id=' . $blog_id . '">' . $blog_title . '</a></h5>
@@ -874,8 +869,8 @@ foreach ($list_newblog_home as $newblog) {
                                         </ul>
                                     </div>
                                 </div>';
-}
-?>
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
