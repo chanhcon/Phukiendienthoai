@@ -108,12 +108,7 @@ foreach ($cate_list as $cate_item) {
                         <div class="col-12 col-md-6">
                             <label class="form-label">Danh mục phụ</label>
                             <select name="id_dmphu" class="form-select">
-                            <?php
-                                $danhmucphu=subcate_select_all();
-                                 foreach ($danhmucphu as  $value) { ?>
-                               
-                                <option value=""><?= $value['ten_danhmucphu'] ?></option> 
-                           <?php } ?>
+                                <option value=""></option>
                             </select>
 
                             <p class="error-message subcate-error">

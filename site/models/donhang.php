@@ -3,7 +3,7 @@
 function taodonhang($madonhang, $tongdonhang, $phivanchuyen, $vat_fee, $pttt, $hoten, $diachi, $email, $sodienthoai, $ghichu, $iduser, $timeorder, $thanhtoan)
 {
     try {
-
+        $vat = !empty($vat_fee) ? $vat_fee : NULL;
         $conn = connectdb();
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         // $sql = "INSERT INTO `tbl_order` (`madonhang`,`pttt`,`hoten`,`dienthoai`,`email`,`diachi`,`tongdonhang`)
@@ -11,7 +11,7 @@ function taodonhang($madonhang, $tongdonhang, $phivanchuyen, $vat_fee, $pttt, $h
         // ";
         // echo $timeorder;
         $sql = "INSERT INTO tbl_order (madonhang, pttt, name, dienthoai, email, address, tongdonhang, shipping_fee, vat_fee, ghichu, iduser, timeorder, thanhtoan)
-        VALUES ('$madonhang', '$pttt', '$hoten', '$sodienthoai','$email','$diachi','$tongdonhang', '$phivanchuyen', '$vat_fee', '$ghichu', '$iduser','$timeorder', $thanhtoan )";
+        VALUES ('$madonhang', '$pttt', '$hoten', '$sodienthoai','$email','$diachi','$tongdonhang', '$phivanchuyen', '$vat', '$ghichu', '$iduser','$timeorder', $thanhtoan )";
 
         // use exec() because no results are returned
         $conn->exec($sql);
