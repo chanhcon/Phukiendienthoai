@@ -88,7 +88,7 @@ switch ($_GET['act']) {
         }
 
         if (!$error) {
-            $is_updated = product_update($idproduct, $tensp, $don_gia, $so_luong, $image_list, $giam_gia, $dac_biet, $date_create, $mo_ta, $thong_tin, $ma_danhmuc, $id_dmphu, $promote);
+            $is_updated = product_update($idproduct, $tensp, $don_gia, $so_luong, $image_list, $giam_gia, $date_create, $mo_ta, $thong_tin, $ma_danhmuc, $id_dmphu, $promote);
             if ($is_updated) {
                 $result = array(
                     "status" => 1,
