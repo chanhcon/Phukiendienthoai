@@ -851,7 +851,7 @@ if (isset($_GET['act'])) {
                 if (!$error) {
 
                     // echo 'Success!';
-                    $is_updated = user_update_info($_POST['iduser'], $ho_ten, $diachi, $sodienthoai, $kichhoat = 1, $target_file, $congty);
+                    $is_updated = user_update_info($_POST['iduser'], $ho_ten, $diachi, $sodienthoai, $target_file, $congty, $kichhoat = 1);
 
                     if ($is_updated) {
 
