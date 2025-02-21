@@ -18,6 +18,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
     $subcate_name = subcatename_select_by_id($product['id_dmphu'])['ten_danhmucphu'];
     #Thumbnail Image
     $image_list = explode(',', $product['images']);
+
     $price_format = number_format($product['don_gia']);
 
     $old_price = number_format($product['don_gia']);
@@ -29,6 +30,8 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
             // echo $image_item;
             $thumbnail = "../uploads/" . $image_item;
             break;
+        } else {
+            $thumbnail = "../uploads/" . $image_list[0];
         }
     }
 

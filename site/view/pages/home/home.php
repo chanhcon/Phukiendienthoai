@@ -123,6 +123,8 @@
                                         // echo $image_item;
                                         $thumbnail = "../uploads/" . $image_item;
                                         break;
+                                    } else {
+                                        $thumbnail = "../uploads/" . $image_list[0];
                                     }
                                 }
                                 // echo $item['masanpham'];
