@@ -1,3 +1,8 @@
+```
+SELECT @@GLOBAL.sql_mode; -- Check current modes
+SET GLOBAL sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION';
+```
+
 ## Link Website (Client )
 
 See more at this website: https://thephoner.online
