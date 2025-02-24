@@ -8,15 +8,12 @@
 
 $cate_list = cate_select_all();
 
-<select onchange="window.location.href = this.value;" class="form-select">
-    <option value="-1">Tất cả danh mục</option>
-    <?php
-    $cate_list = cate_select_all();
-    foreach ($cate_list as $cate_item) {
-        echo '<option value="./index.php?act=productlist&category=' . $cate_item['ma_danhmuc'] . '">' . $cate_item['ten_danhmuc'] . '</option>';
-    }
-    ?>
-</select>
+foreach ($cate_list as $cate_item) {
+    # code...
+    echo '
+                                <option value="' . $cate_item['ma_danhmuc'] . '"><a href="./index.php?act=">' . $cate_item['ten_danhmuc'] . '</a></option>
+                            ';
+}
 
 ?>
 
