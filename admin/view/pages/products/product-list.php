@@ -71,50 +71,47 @@ $total_records = $pagination['total_records'];
 
 // var_dump($product_list);
 foreach ($product_list as $product_item) {
+
     $image_list = explode(",", $product_item['images']);
+
+    $price_item = $product_item['don_gia'] * (1 - $product_item['giam_gia'] / 100);
     $thumbnail = getthumbnail($image_list);
-    $is_danger_class = ($product_item['ton_kho'] <= 10) ? 'bg-danger' : 'bg-success';
-
-    // Tính giá sau khi giảm giá
-    $discount_price = $product_item['don_gia'] * (1 - $product_item['giam_gia'] / 100);
-
+    $is_danger_class = $product_item['ton_kho'] <= 10 ? 'bg-danger' : "bg-success";
+    # code...
     echo '
-    <tr>
-        <td>' . htmlspecialchars($product_item['masanpham']) . '</td>
-        <td class="productlist">
-            <a class="d-flex align-items-center gap-2" href="#">
-                <div class="product-box">
-                    <img src="' . htmlspecialchars($thumbnail) . '" alt="Hình ảnh sản phẩm">
-                </div>
-                <div>
-                    <h6 class="mb-0 product-title">' . htmlspecialchars($product_item['tensp']) . '</h6>
-                </div>
-            </a>
-        </td>
-        <td>2</td>
-        <td>
-            <span>' . number_format($discount_price, 0, ',', '.') . ' VND</span>
-        </td>
-        <td>
-            <span class="badge rounded-pill ' . $is_danger_class . '">' . htmlspecialchars($product_item['ton_kho']) . '</span>
-        </td>
-        <td>
-            <span>' . htmlspecialchars($product_item['ngay_nhap']) . '</span>
-        </td>
-        <td>
-            <div class="d-flex align-items-center gap-3 fs-6">
-                <a href="javascript:viewDetail(' . htmlspecialchars($product_item['masanpham']) . ')" class="text-primary" title="Xem chi tiết">
-                    <i class="bi bi-eye-fill"></i>
-                </a>
-                <a href="javascript:editProduct(' . htmlspecialchars($product_item['masanpham']) . ')" class="text-warning" title="Chỉnh sửa">
-                    <i class="bi bi-pencil-fill"></i>
-                </a>
-                <a href="javascript:deleteProduct(this, ' . htmlspecialchars($product_item['masanpham']) . ');" class="text-danger" title="Xóa">
-                    <i class="bi bi-trash-fill"></i>
-                </a>
-            </div>
-        </td>
-    </tr>';
+                            <tr>
+                                <td>
+                                    ' . $product_item['masanpham'] . '
+                                </td>
+                                <td class="productlist">
+                                    <a class="d-flex align-items-center gap-2" href="#">
+                                        <div class="product-box">
+                                            <img src="' . $thumbnail . '" alt="' . $thumbnail . '">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 product-title">' . $product_item['tensp'] . '</h6>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>2</td>
+                                <td><span>' . $product_item['don_gia'] . ' VND</span></td>
+                                <td><span class="badge rounded-pill ' . $is_danger_class . '">' . $product_item['ton_kho'] . '</span></td>
+                                <td><span>' . $product_item['ngay_nhap'] . '</span></td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-3 fs-6">
+                                        <a href="javascript:viewDetail(' . $product_item['masanpham'] . ')" class="text-primary"
+                                            title=""
+                                            aria-label="Views"><i class="bi bi-eye-fill"></i></a>
+                                        <a href="javascript:editProduct(' . $product_item['masanpham'] . ')" class="text-warning" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom" title="" data-bs-original-title="Edit info"
+                                            aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
+                                        <a href="javascript:deleteProduct(this,' . $product_item['masanpham'] . ');" class="text-danger" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom" title="" data-bs-original-title="Delete"
+                                            aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            ';
 }
 ?>
                 </tbody>
