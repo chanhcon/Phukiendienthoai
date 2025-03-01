@@ -5,7 +5,7 @@ $conn = connectdb();
 // Lấy các tham số lọc
 $filter = $_GET['filter'] ?? '';
 $query = $_GET['query'] ?? '';
-cateid = $_GET['cateid'] ?? '';
+$cateid = $_GET['cateid'] ?? '';
 $subcate_id = $_GET['subcateid'] ?? '';
 $min_price = $_GET['minprice'] ?? 0;
 $max_price = $_GET['maxprice'] ?? 0;
